@@ -1,0 +1,27 @@
+version: 1
+send_anonymous_usage_stats: false
+project_id: "tap-grafana"
+default_environment: dev
+environments:
+  - name: dev
+plugins:
+  extractors:
+    - name: "tap-grafana"
+      namespace: "tap_grafana"
+      pip_url: -e .
+      capabilities:
+        - state
+        - catalog
+        - discover
+        - about
+        - stream-maps
+      settings:
+        - name: api_key
+          kind: password
+        - name: start_date
+        - name: api_url
+          kind: string
+      environments:
+        - name: dev
+        - name: staging
+        - name: prod
