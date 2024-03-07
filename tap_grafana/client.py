@@ -1,4 +1,10 @@
-"""REST client handling, including GrafanaStream base class."""
+"""
+    A specialized class for interacting with the Grafana REST API, inheriting from Meltano RESTStream.
+
+    This class is designed to facilitate interaction with the Grafana REST API, leveraging
+    the functionality provided by the `RESTStream` base class. 
+
+"""
 
 from __future__ import annotations
 
@@ -21,9 +27,6 @@ else:
 
 _Auth = Callable[[requests.PreparedRequest], requests.PreparedRequest]
 
-# TODO: Delete this is if not using json files for schema definition
-SCHEMAS_DIR = importlib_resources.files(__package__) / "schemas"
-
 
 class GrafanaPaginator(BaseHATEOASPaginator):
     def get_next_url(self, response):
@@ -40,9 +43,8 @@ class GrafanaRestStream(RESTStream):
         # TODO: hardcode a value here, or retrieve it from self.config
         return "https://oncall-prod-us-central-0.grafana.net/oncall"
 
-    records_jsonpath = "$.results[*]"  # Or override `parse_response`.
+    records_jsonpath = "$.results[*]"
 
-    # Set this value or override `get_new_paginator`.
     next_page_token_jsonpath = "$.next_page"  # noqa: S105
 
     @property

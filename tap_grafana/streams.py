@@ -33,3 +33,6 @@ promoting code reusability and maintainability.
 """
 
 from tap_grafana.grafana_streams.oncall_alerts_stream import OnCallAlertsStream
+from tap_grafana.grafana_streams.oncall_alert_groups_stream import (
+    OnCallAlertGroupsStream,
+)

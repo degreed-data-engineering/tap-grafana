@@ -1,1 +1,1 @@
-"""Tap for Grafana."""
+"""Meltano tap for Grafana OnCall module"""

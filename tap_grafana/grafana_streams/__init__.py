@@ -1,1 +1,1 @@
-"""All strems are defined in this module"""
+"""All Grafana OnCall streams are defined in this module"""

@@ -1,4 +1,13 @@
-"""Stream type classes for tap-grafana."""
+"""
+    A Meltano stream class to interact with the Grafana OnCall Alerts API.
+
+    This class provides methods to fetch alerts from the Grafana OnCall
+    system through its Alerts HTTP API. It is designed to handle operation to 
+    retrieving alert details.
+
+    References:
+        Grafana OnCall Alerts API Documentation: https://grafana.com/docs/oncall/latest/oncall-api-reference/alerts/
+    """
 
 from __future__ import annotations
 
@@ -19,7 +28,9 @@ API_VERSION = "v1"
 
 
 class OnCallAlertsStream(GrafanaRestStream):
-    """List all OnCall alerts"""
+    """
+    Meltano stream class to get alerts from the Grafana OnCall system.
+    """
 
     name = "oncall_alerts"
     path = f"/api/{API_VERSION}/alerts"

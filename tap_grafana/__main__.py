@@ -1,4 +1,4 @@
-"""Grafana entry point."""
+"""Meltano tap-grafana extractor entry point."""
 
 from __future__ import annotations
 

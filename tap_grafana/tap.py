@@ -1,4 +1,10 @@
-"""Grafana tap class."""
+"""
+Entry point for a Meltano tap that interacts with the Grafana REST API using Tap for argument parsing.
+
+This script serves as the main entry point for the Meltano tap, leveraging the Tap library to
+parse command-line arguments. It initializes a `GrafanaRestStream` instance, configured with
+the necessary API URL and headers, and uses it to fetch and manage data from the Grafana REST API.
+"""
 
 from __future__ import annotations
 
@@ -43,6 +49,7 @@ class TapGrafana(Tap):
         """
         return [
             streams.OnCallAlertsStream(self),
+            streams.OnCallAlertGroupsStream(self),
         ]
 
 
