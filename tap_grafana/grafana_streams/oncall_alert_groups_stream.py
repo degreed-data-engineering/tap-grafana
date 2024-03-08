@@ -7,7 +7,7 @@
 
     References:
         Grafana OnCall Alerts API Documentation: https://grafana.com/docs/oncall/latest/oncall-api-reference/alertgroups/
-    """
+"""
 
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ class OnCallAlertGroupsStream(GrafanaRestStream):
     Meltano stream class to get alert groups from the Grafana OnCall system.
     """
 
-    name = "oncall_alerts"
+    name = "oncall_alert_groups"
     path = f"/api/{API_VERSION}/alert_groups"
     replication_key = None
 
@@ -54,7 +54,7 @@ class OnCallAlertGroupsStream(GrafanaRestStream):
         ),
     )
 
-    alert_groups_schema = th.ObjectType(
+    alert_groups_schema = th.PropertiesList(
         th.Property(
             "id",
             th.StringType,

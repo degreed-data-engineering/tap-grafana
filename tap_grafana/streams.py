@@ -36,3 +36,7 @@ from tap_grafana.grafana_streams.oncall_alerts_stream import OnCallAlertsStream
 from tap_grafana.grafana_streams.oncall_alert_groups_stream import (
     OnCallAlertGroupsStream,
 )
+from tap_grafana.grafana_streams.oncall_shifts_stream import OnCallShiftsStream
+from tap_grafana.grafana_streams.oncall_resolution_notes_stream import (
+    OnCallResolutionNotesStream,
+)

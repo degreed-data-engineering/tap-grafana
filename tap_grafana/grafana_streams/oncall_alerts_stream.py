@@ -7,14 +7,14 @@
 
     References:
         Grafana OnCall Alerts API Documentation: https://grafana.com/docs/oncall/latest/oncall-api-reference/alerts/
-    """
+"""
 
 from __future__ import annotations
 
 import sys
 import typing as t
 
-from singer_sdk import typing as th  # JSON Schema typing helpers
+from singer_sdk import typing as th
 
 from tap_grafana.client import GrafanaRestStream
 
@@ -45,6 +45,63 @@ class OnCallAlertsStream(GrafanaRestStream):
         th.Property("name", th.StringType, description="The name of the organization"),
     )
 
+    alert_ticket_schema = th.ObjectType(
+        th.Property(
+            "id",
+            th.StringType,
+            description="The unique identifier for the ticket",
+        ),
+        th.Property(
+            "url",
+            th.StringType,
+            description="URL of the ticket",
+            nullable=True,
+        ),
+        th.Property(
+            "title",
+            th.StringType,
+            description="Title of the ticket",
+        ),
+        th.Property(
+            "status",
+            th.StringType,
+            description="Status of the ticket",
+        ),
+        th.Property(
+            "description",
+            th.StringType,
+            description="Description of the ticket",
+        ),
+    )
+
+    alert_oncall_schema = th.ObjectType(
+        th.Property(
+            "uid",
+            th.StringType,
+            description="Unique identifier for the alert",
+        ),
+        th.Property(
+            "title",
+            th.StringType,
+            description="Title of the alert",
+        ),
+        th.Property(
+            "message",
+            th.StringType,
+            description="Detailed message of the alert",
+        ),
+        th.Property(
+            "permalink",
+            th.StringType,
+            description="URL to view the alert details",
+        ),
+        th.Property(
+            "author_username",
+            th.StringType,
+            description="Username of the author of the alert",
+        ),
+    )
+
     alert_payload_schema = th.ObjectType(
         th.Property(
             "id",
@@ -67,6 +124,11 @@ class OnCallAlertsStream(GrafanaRestStream):
         ),
         th.Property(
             "image",
+            th.StringType,
+            description="A URL to an image associated with the alert",
+        ),
+        th.Property(
+            "Image",
             th.StringType,
             description="A URL to an image associated with the alert",
         ),
@@ -153,9 +215,54 @@ class OnCallAlertsStream(GrafanaRestStream):
             ),
             description="The evaluation matches for the alert",
         ),
+        th.Property(
+            "ticket",
+            alert_ticket_schema,
+            description="Ticket details",
+        ),
+        th.Property(
+            "alert_uid",
+            th.StringType,
+            description="Alert UID",
+        ),
+        th.Property(
+            "oncall",
+            alert_oncall_schema,
+            description="Contains information about the oncall alert",
+        ),
+        th.Property(
+            "image_url",
+            th.StringType,
+            description="URL of the image associated with the alert",
+        ),
+        th.Property(
+            "is_amixr_heartbeat",
+            th.BooleanType,
+            description="Indicator if the amixr heartbeat is active",
+        ),
+        th.Property(
+            "is_oncall_heartbeat",
+            th.BooleanType,
+            description="Indicator if the on-call heartbeat is active",
+        ),
+        th.Property(
+            "link_to_upstream_details",
+            th.StringType,
+            description="Link to detailed information about the alert",
+        ),
+        th.Property(
+            "is_amixr_heartbeat_restored",
+            th.BooleanType,
+            description="Indicator if the amixr heartbeat has been restored",
+        ),
+        th.Property(
+            "is_oncall_heartbeat_restored",
+            th.BooleanType,
+            description="Indicator if the on-call heartbeat has been restored",
+        ),
     )
 
-    schema = th.PropertiesList(
+    alert_schema = th.PropertiesList(
         th.Property(
             "id",
             th.StringType,
@@ -172,4 +279,6 @@ class OnCallAlertsStream(GrafanaRestStream):
             description="The date and time when the alert was created, in ISO 8601 format.",
         ),
         th.Property("payload", alert_payload_schema),
-    ).to_dict()
+    )
+
+    schema = alert_schema.to_dict()

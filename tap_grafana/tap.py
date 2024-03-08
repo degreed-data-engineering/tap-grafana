@@ -50,6 +50,8 @@ class TapGrafana(Tap):
         return [
             streams.OnCallAlertsStream(self),
             streams.OnCallAlertGroupsStream(self),
+            streams.OnCallShiftsStream(self),
+            streams.OnCallResolutionNotesStream(self),
         ]
 
 
