@@ -15,7 +15,7 @@ from . import streams, client
 
 
 class TapGrafana(Tap):
-    """Grafana tap class."""
+    """Meltano tap extractor calss for the source Grafana."""
 
     name = "tap-grafana"
 

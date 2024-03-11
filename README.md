@@ -32,8 +32,8 @@ To add the `tap-grafana` to an existing Meltano project, follow these steps:
         - name: tap-grafana
           namespace: tap_grafana
           pip_url: git+https://github.com/degreed-data-engineering/tap-grafana
-        config:
-          api_key: <your_api_key>
+          config:
+            api_key: <your_api_key>
    ```
 
 3. **Configure the Tap-Grafana extractor**:
