@@ -67,7 +67,7 @@ By following these steps, you will have successfully added `tap-grafana` to your
 ### 2. Install from GitHub:
 
 ```bash
-pipx install git+https://github.com/degreed-data-engineering/tap-grafana.git@main
+pipx install git+https://github.com/degreed-data-engineering/tap-grafana.git
 ```
 ## Configuration
 
