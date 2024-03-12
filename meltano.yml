@@ -20,7 +20,7 @@ plugins:
         - name: api_key
           kind: password
         - name: start_date
-        - name: api_url
+        - name: api_base_url
           kind: string
       environments:
         - name: dev

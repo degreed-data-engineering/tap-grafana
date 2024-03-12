@@ -33,7 +33,8 @@ To add the `tap-grafana` to an existing Meltano project, follow these steps:
           namespace: tap_grafana
           pip_url: git+https://github.com/degreed-data-engineering/tap-grafana
           config:
-            api_key: <your_api_key>
+            api_key: <API Key for Grafana OnCall module API service>
+            api_base_url: <Base url for the Grafana OnCall module API service>
    ```
 
 3. **Configure the Tap-Grafana extractor**:
@@ -42,9 +43,10 @@ To add the `tap-grafana` to an existing Meltano project, follow these steps:
    ```bash
     meltano config tap-grafana set --interactive
    ```
-   Or, you can set the TAP_GRAFANA_API_KEY environment variable in your .env file:
+   Or, you can set the config environment variable in your .env file. For example:
    ```bash
-    TAP_GRAFANA_API_KEY=your_api_key_here
+    TAP_GRAFANA_API_KEY="your_api_key_here"
+    TAP_GRAFANA_API_BASE_URL="https://oncall-prod-us-central-0.grafana.net/oncall"
    ```
 
 4. **Test the Tap-Grafana extractor configuration**:
@@ -71,20 +73,23 @@ pipx install git+https://github.com/degreed-data-engineering/tap-grafana.git
 ```
 ## Configuration
 
-Tap-Grafana requires an API key to authenticate with the Grafana API. This is a mandatory configuration. 
+`tap-grafana` requires an API Base URL and an API key to connect and authenticate with the Grafana OnCall module APIs. These are mandatory configurations. 
 
-  - `api_key`: This is your Grafana API key. You can set this API key in your environment variables:
+  - `api_key`: This is your Grafana API key. 
+  - `api_base_url`: Base url for the Grafana OnCall module API service.
 
 You can set this API key in your environment variables:
 
 ```bash
 export TAP_GRAFANA_API_KEY=your_api_key_here
+export TAP_GRAFANA_API_BASE_URL="https://oncall-prod-us-central-0.grafana.net/oncall"
 ```
 
 Alternatively, you can create a .env file in your project directory and add the following line:
 
 ```bash
 TAP_GRAFANA_API_KEY=your_api_key_here
+TAP_GRAFANA_API_BASE_URL="https://oncall-prod-us-central-0.grafana.net/oncall"
 ```
 
 ### Configure using environment variables

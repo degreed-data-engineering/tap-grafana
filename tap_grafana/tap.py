@@ -34,10 +34,10 @@ class TapGrafana(Tap):
             description="The earliest record date to sync",
         ),
         th.Property(
-            "api_url",
+            "api_base_url",
             th.StringType,
-            default="https://oncall-prod-us-central-0.grafana.net/oncall",
-            description="Base url for the Grafana API service",
+            required=True,
+            description="Base url for the Grafana OnCall module API service",
         ),
     ).to_dict()
 

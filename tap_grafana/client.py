@@ -40,8 +40,7 @@ class GrafanaRestStream(RESTStream):
     @property
     def url_base(self) -> str:
         """Return the API URL root, configurable via tap settings."""
-        # TODO: hardcode a value here, or retrieve it from self.config
-        return "https://oncall-prod-us-central-0.grafana.net/oncall"
+        return self.config.get("api_base_url", "")
 
     records_jsonpath = "$.results[*]"
 
