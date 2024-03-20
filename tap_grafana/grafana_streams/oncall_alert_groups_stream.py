@@ -34,6 +34,7 @@ class OnCallAlertGroupsStream(GrafanaRestStream):
 
     name = "oncall_alert_groups"
     path = f"/api/{API_VERSION}/alert_groups"
+    primary_keys = ["id"]
     replication_key = None
 
     perma_links_schema = th.ObjectType(

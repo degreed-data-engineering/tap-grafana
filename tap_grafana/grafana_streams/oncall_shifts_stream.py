@@ -34,6 +34,7 @@ class OnCallShiftsStream(GrafanaRestStream):
 
     name = "oncall_shifts"
     path = f"/api/{API_VERSION}/on_call_shifts"
+    primary_keys = ["id"]
     replication_key = None
 
     oncall_shifts_schema = th.ObjectType(

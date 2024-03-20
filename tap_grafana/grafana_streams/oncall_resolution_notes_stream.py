@@ -34,6 +34,7 @@ class OnCallResolutionNotesStream(GrafanaRestStream):
 
     name = "oncall_resolution_notes"
     path = f"/api/{API_VERSION}/resolution_notes"
+    primary_keys = ["id"]
     replication_key = None
 
     oncall_resolution_note_schema = th.PropertiesList(
